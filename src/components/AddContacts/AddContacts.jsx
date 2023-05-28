@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import css from './AddContacts.css';
+import css from './AddContacts.module.css';
+import propTypes from 'prop-types';
 
 export class AddContacts extends Component {
   state = {
@@ -24,7 +25,7 @@ export class AddContacts extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={css.form} onSubmit={this.handleSubmit}>
         <div className={css.form_name}>
           <label htmlFor="input1" className={css.form_label}>
             Name
@@ -56,3 +57,7 @@ export class AddContacts extends Component {
     );
   }
 }
+
+AddContacts.propTypes = {
+  createUser: propTypes.func.isRequired,
+};
