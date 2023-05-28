@@ -32,3 +32,7 @@ form input {
   font-size: 16px;
   transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+.btn_primary:hover,
+.btn_primary:focus {
+  background-color: rgb(36, 74, 178);
+}
