@@ -15,10 +15,7 @@ export class AddContacts extends Component {
   handleSubmit = e => {
     e.preventDefault();
     // this.props.createUser(this.state);
-    this.props.createUser({
-      name: this.state.name,
-      number: this.state.number,
-    });
+    this.props.createUser(this.state.name, this.state.number);
     this.setState({
       contacts: [],
       name: '',
