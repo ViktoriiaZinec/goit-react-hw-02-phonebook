@@ -12,21 +12,8 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    filter: '',
+    filterName: '',
   };
-
-  // createUser = data => {
-  //   const newUser = {
-  //     ...data,
-  //     id: nanoid(),
-  //   };
-  //   this.setState(prevState => {
-  //     return {
-  //       contacts: [...prevState.contacts, newUser],
-  //       filter: prevState.filter,
-  //     };
-  //   });
-  // };
 
   createUser = (name, number) => {
     const newUser = {
@@ -35,21 +22,24 @@ export class App extends Component {
       id: nanoid(),
     };
     for (const contact of this.state.contacts) {
-      if (name === contact.name) {
+      if (
+        name.toLowerCase() === contact.name.toLowerCase() &&
+        number === contact.number
+      ) {
         return alert(name + ' is already in contact list');
       }
     }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newUser],
-      filter: prevState.filter,
+      filterName: prevState.filterName,
     }));
   };
 
-  deleteContact = id => {
+  deleteUser = id => {
     this.setState(prevState => {
       return {
         contacts: prevState.contacts.filter(contact => contact.id !== id),
-        filter: prevState.filter,
+        filterName: prevState.filterName,
       };
     });
   };
@@ -57,7 +47,7 @@ export class App extends Component {
   setFilter = filter => {
     this.setState(prevState => {
       return {
-        filter: filter,
+        filterName: filter,
         contacts: prevState.contacts,
       };
     });
@@ -66,17 +56,19 @@ export class App extends Component {
   render() {
     // console.log('this render:>> ', this);
     const filteredContacts = this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().startsWith(this.state.filter.toLowerCase())
+      contact.name
+        .toLowerCase()
+        .startsWith(this.state.filterName.toLowerCase().trim())
     );
     return (
       <div>
         <h1>Phonebook</h1>
         <AddContacts createUser={this.createUser} />
         <h2>Contacts</h2>
-        <Filter filter={this.state.filter} setFilter={this.setFilter} />
+        <Filter setFilter={this.setFilter} />
         <ContactsList
           contacts={filteredContacts}
-          deleteContact={this.deleteContact}
+          deleteUser={this.deleteUser}
         />
       </div>
     );

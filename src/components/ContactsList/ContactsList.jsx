@@ -1,7 +1,7 @@
 import css from './ContactsList.module.css';
 import propTypes from 'prop-types';
 
-export function ContactsList({ contacts, deleteContact }) {
+export function ContactsList({ contacts, deleteUser }) {
   return (
     <div>
       <ul className={css.list}>
@@ -11,7 +11,7 @@ export function ContactsList({ contacts, deleteContact }) {
             <button
               className={css.btnDelete}
               onClick={event => {
-                deleteContact(contact.id);
+                deleteUser(contact.id);
               }}
             >
               Delete
@@ -31,5 +31,5 @@ ContactsList.propTypes = {
       number: propTypes.string.isRequired,
     })
   ),
-  deleteContact: propTypes.func.isRequired,
+  deleteUser: propTypes.func.isRequired,
 };

@@ -1,7 +1,7 @@
 import css from './Filter.module.css';
 import propTypes from 'prop-types';
 
-export function Filter({ filter, setFilter }) {
+export function Filter({ setFilter }) {
   const handleFilterChange = evt => {
     evt.preventDefault();
     setFilter(evt.target.value);
@@ -19,6 +19,5 @@ export function Filter({ filter, setFilter }) {
 }
 
 Filter.propTypes = {
-  filter: propTypes.string.isRequired,
   setFilter: propTypes.func.isRequired,
 };
